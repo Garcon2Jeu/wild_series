@@ -32,4 +32,12 @@ class Category
 
         return $this;
     }
+
+    public static function withName(string $name): Category
+    {
+        $category = new self();
+        $category->name = $name;
+
+        return $category;
+    }
 }
