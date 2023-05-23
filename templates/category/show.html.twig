@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category: {{ category.name }}{% endblock %}
+
+{% block body %}
+
+<h1>{{ category.name }} Tv shows</h1>
+
+{% for program in programs %}
+
+<img src="" alt="">
+<a href={{ path("program_show", {id: program.id}) }}>
+    <h3>{{program.id}} - {{ program.title }}</h3>
+</a>
+
+<!--<p>{{ program.synopsis }}</p>-->
+
+
+{% else %}
+
+<h2>There are no shows under this category</h2>
+
+{% endfor %}
+
+
+{% endblock %}
