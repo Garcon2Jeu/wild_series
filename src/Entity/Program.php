@@ -79,4 +79,16 @@ class Program
 
         return $this;
     }
+
+    public static function withData(array $data): Program
+    {
+        $program = new self();
+
+        $program->setTitle($data["title"]);
+        $program->setSynopsis($data["synopsis"]);
+        $program->setPoster($data["poster"]);
+        $program->setCategory($data["category"]);
+
+        return $program;
+    }
 }
