@@ -8,6 +8,7 @@ use App\Entity\Program;
 use App\Entity\Season;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
@@ -17,6 +18,8 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        $faker = Factory::create();
+
         $categories = [];
         for ($i = 0; $i < 10; $i++) {
             $category = Category::withName("category_" . $i + 1);
@@ -34,7 +37,7 @@ class AppFixtures extends Fixture
 
         $programs = [];
         for ($i = 0; $i < 30; $i++) {
-            $programTemplate["title"] = "program_" . $i + 1;
+            $programTemplate["title"] = $faker->city();
             $programTemplate["category"] = $categories[array_rand($categories)];
 
             $program = Program::withData($programTemplate);
@@ -80,7 +83,7 @@ class AppFixtures extends Fixture
             for ($i = 0; $i < $numberOfEpisodes; $i++) {
 
                 $episodeTemplate["season"] = $season;
-                $episodeTemplate["title"] = "episode_" . $i + 1;
+                $episodeTemplate["title"] = $faker->firstName();
                 $episodeTemplate["number"] = $i + 1;
 
                 $episode = Episode::withData($episodeTemplate);
