@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProgramRepository;
 use App\Entity\Program;
+use App\Repository\SeasonRepository;
 
 #[Route("/program/", name: "program_")]
 class ProgramController extends AbstractController
@@ -22,9 +23,12 @@ class ProgramController extends AbstractController
     }
 
     #[Route("{id<\d+>}", methods: ["GET"], name: "show")]
-    public function show(int $id, ProgramRepository $programRepository)
-    {
+    public function show(
+        int $id,
+        ProgramRepository $programRepository,
+    ) {
         $program = $programRepository->findOneBy(["id" => $id]);
+        $seasons = $program->getSeasons();
 
         if (!$program) {
             throw $this->createNotFoundException(
@@ -32,8 +36,9 @@ class ProgramController extends AbstractController
             );
         }
 
-        return $this->render("program/showID.html.twig", [
-            "program" => $program
+        return $this->render("program/show.html.twig", [
+            "program" => $program,
+            "seasons" => $seasons
         ]);
     }
 }
