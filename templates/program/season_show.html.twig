@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Série #{{ program.id }}{% endblock %}
+
+{% block body %}
+<h1>{{program.title}}</h1>
+<ul>
+
+    {% for episode in season.episodes %}
+
+    <li>
+        <a href={{ path("program_show_episode", { "program" : program.id, "season" : season.id, "episode"
+            :episode.id})}}>
+            <h4>{{episode.title}}</h4>
+        </a>
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+
+</ul>
+{% endblock %}

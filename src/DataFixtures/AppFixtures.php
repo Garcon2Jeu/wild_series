@@ -32,7 +32,6 @@ class AppFixtures extends Fixture
             "synopsis" => self::LOREM,
             "poster" => "path_to_poster",
             "category" => ""
-
         ];
 
         $programs = [];

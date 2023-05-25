@@ -6,9 +6,10 @@
 
 <h1>{{ category.name }} Tv shows</h1>
 
-{% for program in programs %}
+{% for program in category.programs %}
 
 <img src="" alt="">
+
 <a href={{ path("program_show", {id: program.id}) }}>
     <h3>{{program.id}} - {{ program.title }}</h3>
 </a>
